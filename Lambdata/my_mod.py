@@ -6,9 +6,8 @@ def enlarge(n):
 
 
 if __name__ == "__main__":
-
-    print("JUNK")
-    print("GLOBAL SCOPE")
-
-    y = float(input("PLEASE INPUT A NUMBER TO ENLARGE: "))
-    print(enlarge(y))
+    # only run the code below IF this script is invoked from the command-line
+    # not if it is imported from another script
+    print("HELLO")
+    y = int(input("Please choose a number"))
+    print(y, enlarge(y))
