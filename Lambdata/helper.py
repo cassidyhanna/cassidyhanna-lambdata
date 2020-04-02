@@ -25,9 +25,9 @@ def train_val_test_split(X, y, train_size=0.70, val_size=0.15, test_size=0.15,
         default test size is 0.15
 
     random_state: int, RandomState instance or None, optional (default=None)
-        If int, random_state is the seed used by the random number generator; If RandomState instance, random_state is
-        he random number generator; If None, the random number generator is the RandomState instance used by 
-        np.random.
+        If int, random_state is the seed used by the random number generator; If RandomState instance, 
+        random_state is he random number generator; If None, the random number generator is the 
+        RandomState instance used by np.random.
 
     shuffle: boolean, optional (default=True)
         Whether to shuffle the data or not before splitting.
@@ -52,9 +52,10 @@ def train_val_test_split(X, y, train_size=0.70, val_size=0.15, test_size=0.15,
 
 # Function to split dates ("MM/DD/YYYY", etc.) into multiple columns
 
+
 def split_dates(df, column):
     """
-    Splits datas into columns "day", "month" and "year".
+    Splits dates into columns "day", "month" and "year".
 
     Param: DataFrame and date columns.
 
