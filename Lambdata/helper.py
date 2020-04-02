@@ -60,9 +60,10 @@ def split_dates(df, column):
 
     Returns: DataFrame 
     """
-
+    # Apply datetime function to date column
     df[column] = pd.to_datetime(df[column])
 
+    # Create day, month and year columns
     df['day'] = pd.DatetimeIndex(df[column]).day
     df['month'] = pd.DatetimeIndex(df[column]).month
     df['year'] = pd.DatetimeIndex(df[column]).year
