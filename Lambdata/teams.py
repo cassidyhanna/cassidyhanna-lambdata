@@ -16,19 +16,14 @@ class Team():
         return f"{self.city} {self.name}"
 
 
-class BaseballTeam():
+class BaseballTeam(Team):
     def __init__(self, name, city, starting_pitcher, players=["Player 1"]):
-        self.name = name
-        self.city = city
-        self.players = players
+        super().__init__(city, name, players)
         self.starting_pitcher = starting_pitcher
 
     def advertise(self):
-        print(f"HEY COME TO {self.city.upper()} TO SEE OUR GAMES!!!")
-
-    @property
-    def full_name(self):
-        return f"{self.city} {self.name}"
+        print(
+            f"HEY COME TO {self.city.upper()} TO SEE OUR PITCHER {self.starting_pitcher}!!!")
 
 
 if __name__ == "__main__":
