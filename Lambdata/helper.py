@@ -1,6 +1,7 @@
 
+# Lambdata/ helper.py (functional approach)
+import pandas
 from sklearn.model_selection import train_test_split
-import pandas as pd
 
 
 # Train/validate/test split function for a dataframe
@@ -10,7 +11,7 @@ import pandas as pd
 def train_val_test_split(X, y, train_size=0.70, val_size=0.15, test_size=0.15,
                          random_state=None, shuffle=True):
     """
-    Split arrays or matrices into random train  validation and test subsets
+    Split arrays or matrices into random train, validation and test subsets
 
     Param: *arrays sequence of indexables with same length 
       Allowed inputs are lists, numpy arrays, or pandas dataframes.
@@ -30,7 +31,7 @@ def train_val_test_split(X, y, train_size=0.70, val_size=0.15, test_size=0.15,
         RandomState instance used by np.random.
 
     shuffle: boolean, optional (default=True)
-        Whether to shuffle the data or not before splitting.
+        Whether or not the data is shuffled before splitting.
 
     Returns: DataFrame split DataFrames
     """
@@ -62,11 +63,25 @@ def split_dates(df, column):
     Returns: DataFrame 
     """
     # Apply datetime function to date column
-    df[column] = pd.to_datetime(df[column])
+    df[column] = pandas.to_datetime(df[column])
 
     # Create day, month and year columns
-    df['day'] = pd.DatetimeIndex(df[column]).day
-    df['month'] = pd.DatetimeIndex(df[column]).month
-    df['year'] = pd.DatetimeIndex(df[column]).year
+    df['day'] = pandas.DatetimeIndex(df[column]).day
+    df['month'] = pandas.DatetimeIndex(df[column]).month
+    df['year'] = pandas.DatetimeIndex(df[column]).year
 
     return df
+
+
+# State abbreviation -> Full Name and visa versa. FL -> Florida, etc. (Handle Washington DC and territories like Puerto Rico etc.)
+
+def add_state_name():
+    pass
+
+
+if __name__ == "__main__":
+
+    df = pandas.DataFrame({"abbrev": ["CA", "CT", "CO", "TX", "DC"]})
+    print(df.head())
+    df2 = pandas.DataFrame({"abbrev": ["OH", "MI", "OR", "TX", "DC"]})
+    print(df2.head())

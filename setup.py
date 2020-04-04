@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="cassidy-lambdata",
-    version="1.0",
+    version="1.0.1",
     author="Cassidy Ellis",
     author_email="cellis@pdx.edu",
     description="For example purposes",
