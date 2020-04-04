@@ -75,13 +75,34 @@ def split_dates(df, column):
 
 # State abbreviation -> Full Name and visa versa. FL -> Florida, etc. (Handle Washington DC and territories like Puerto Rico etc.)
 
-def add_state_name():
-    pass
+def add_state_name(my_df):
+    """
+    Add corresponding state names to a DataFrame.
+    param: my _df (pandas.DataFrame) containing a column called "abbrev"
+    """
+    new_df = my_df.copy()
+
+    names_map = {
+        "CA": "Cali",
+        "CT": "Conn",
+        "CO": "Colorada",
+        # todo: more abbrevs!
+
+    }
+    new_df["name"] = new_df["abbrev"].map(names_map)
+    return new_df
 
 
 if __name__ == "__main__":
 
+    print("---------------")
     df = pandas.DataFrame({"abbrev": ["CA", "CT", "CO", "TX", "DC"]})
     print(df.head())
+    new_df = add_state_name(df)
+    print(new_df.head())
+
+    print("---------------")
     df2 = pandas.DataFrame({"abbrev": ["OH", "MI", "OR", "TX", "DC"]})
     print(df2.head())
+    new_df2 = add_state_name(df2)
+    print(new_df2.head())
