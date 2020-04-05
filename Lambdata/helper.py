@@ -74,17 +74,14 @@ def split_dates(df, column):
 
 
 # State abbreviation -> Full Name and visa versa. FL -> Florida, etc. (Handle Washington DC and territories like Puerto Rico etc.)
-class DataProcessor():
-    def __init__(self, my_df):
-        """
-         param: my-df (pandas.DataFrame) containing a column called "abbrev"
-        """
-        self.df = my_df.copy()
+class CustomFrame(pandas.DataFrame):
+    """
+    param: my-df (pandas.DataFrame) containing a column called "abbrev"
+    """
 
     def add_state_name(self):
         """
-        Add corresponding state names to a DataFrame.
-        param: my _df (pandas.DataFrame) containing a column called "abbrev"
+         Add corresponding state names to a DataFrame.
         """
         # new_df = self.df.copy()
 
@@ -95,7 +92,7 @@ class DataProcessor():
             # todo: more abbrevs!
 
         }
-        self.df["name"] = self.df["abbrev"].map(names_map)
+        self["name"] = self["abbrev"].map(names_map)
 
 
 if __name__ == "__main__":
@@ -105,10 +102,18 @@ if __name__ == "__main__":
     # print(df1.head())
     # new_df = add_state_name(df1)
     # print(new_df.head())
+
+    '''
     processor = DataProcessor(df1)
     print(processor.df.head())
     processor.add_state_name()
     print(processor.df.head())
+    '''
+
+    custom_df = CustomFrame({"abbrev": ["CA", "CT", "CO", "TX", "DC"]})
+    print(custom_df.head())
+    custom_df.add_state_name()
+    print(custom_df.head())
 
     '''
     
