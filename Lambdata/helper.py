@@ -13,7 +13,7 @@ def train_val_test_split(X, y, train_size=0.70, val_size=0.15, test_size=0.15,
     """
     Split arrays or matrices into random train, validation and test subsets
 
-    Param: *arrays sequence of indexables with same length 
+    Param: *arrays sequence of indexables with same length
       Allowed inputs are lists, numpy arrays, or pandas dataframes.
 
     train_size: float, int or None, optional (default=0.70)
@@ -26,8 +26,8 @@ def train_val_test_split(X, y, train_size=0.70, val_size=0.15, test_size=0.15,
         default test size is 0.15
 
     random_state: int, RandomState instance or None, optional (default=None)
-        If int, random_state is the seed used by the random number generator; If RandomState instance, 
-        random_state is he random number generator; If None, the random number generator is the 
+        If int, random_state is the seed used by the random number generator; If RandomState instance,
+        random_state is he random number generator; If None, the random number generator is the
         RandomState instance used by np.random.
 
     shuffle: boolean, optional (default=True)
@@ -60,7 +60,7 @@ def split_dates(df, column):
 
     Param: DataFrame and date columns.
 
-    Returns: DataFrame 
+    Returns: DataFrame
     """
     # Apply datetime function to date column
     df[column] = pandas.to_datetime(df[column])
@@ -74,35 +74,48 @@ def split_dates(df, column):
 
 
 # State abbreviation -> Full Name and visa versa. FL -> Florida, etc. (Handle Washington DC and territories like Puerto Rico etc.)
+class DataProcessor():
+    def __init__(self, my_df):
+        """
+         param: my-df (pandas.DataFrame) containing a column called "abbrev"
+        """
+        self.df = my_df.copy()
 
-def add_state_name(my_df):
-    """
-    Add corresponding state names to a DataFrame.
-    param: my _df (pandas.DataFrame) containing a column called "abbrev"
-    """
-    new_df = my_df.copy()
+    def add_state_name(self):
+        """
+        Add corresponding state names to a DataFrame.
+        param: my _df (pandas.DataFrame) containing a column called "abbrev"
+        """
+        # new_df = self.df.copy()
 
-    names_map = {
-        "CA": "Cali",
-        "CT": "Conn",
-        "CO": "Colorada",
-        # todo: more abbrevs!
+        names_map = {
+            "CA": "Cali",
+            "CT": "Conn",
+            "CO": "Colorada",
+            # todo: more abbrevs!
 
-    }
-    new_df["name"] = new_df["abbrev"].map(names_map)
-    return new_df
+        }
+        self.df["name"] = self.df["abbrev"].map(names_map)
 
 
 if __name__ == "__main__":
 
     print("---------------")
-    df = pandas.DataFrame({"abbrev": ["CA", "CT", "CO", "TX", "DC"]})
-    print(df.head())
-    new_df = add_state_name(df)
-    print(new_df.head())
+    df1 = pandas.DataFrame({"abbrev": ["CA", "CT", "CO", "TX", "DC"]})
+    # print(df1.head())
+    # new_df = add_state_name(df1)
+    # print(new_df.head())
+    processor = DataProcessor(df1)
+    print(processor.df.head())
+    processor.add_state_name()
+    print(processor.df.head())
 
+    '''
+    
     print("---------------")
     df2 = pandas.DataFrame({"abbrev": ["OH", "MI", "OR", "TX", "DC"]})
     print(df2.head())
     new_df2 = add_state_name(df2)
     print(new_df2.head())
+
+    '''
